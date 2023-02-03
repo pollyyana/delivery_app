@@ -1,10 +1,13 @@
 import 'package:delivery_app/app/core/ui/helpers/loader.dart';
 import 'package:delivery_app/app/core/ui/helpers/messages.dart';
 import 'package:delivery_app/app/core/ui/widgets/delivery_appbar.dart';
-import 'package:delivery_app/app/models/products_model.dart';
-
+// import 'package:delivery_app/app/models/products_model.dart';
 import 'package:delivery_app/app/pages/home/widgets/delivery_product_tile.dart';
+import 'package:delivery_app/app/pages/home/widgets/home_controller.dart';
+import 'package:delivery_app/app/pages/home/widgets/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,30 +18,50 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with Loader, Messages {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<HomeController>().loadProducts();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: DeliveryAppbar(),
-        
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return DeliveryProductTile(
-                    product: ProductsModel(
-                        id: 0,
-                        name: 'Lanche X',
-                        description:
-                            'Lanche acompanha pão, hambúrguer,mussarela e maionese',
-                        price: 15.0,
-                        image:
-                            'https://assets.unileversolutions.com/recipes-v2/106684.jpg?imwidth=800'),
-                  );
-                },
-              ),
-            )
-          ],
+        body: BlocConsumer<HomeController, HomeState>(
+          listener: (context, state) {
+            state.status.matchAny(
+              any: () {},
+              loading: () => showLoader(),
+              error: () {
+                hideLoader();
+                showError(state.errorMessage ?? 'Erro não informado');
+              },
+            );
+          },
+          buildWhen: ((previous, current) => current.status.matchAny(
+                any: () => false,
+                initial: () => true,
+                loaded: () => true,
+              )),
+          builder: (context, state) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: state.produts.length,
+                      itemBuilder: (context, index) {
+                        final product = state.produts[index];
+                        return DeliveryProductTile(
+                          product: product,
+                        );
+                      }),
+                )
+              ],
+            );
+          },
         ));
   }
 }
