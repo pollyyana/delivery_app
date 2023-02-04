@@ -1,8 +1,11 @@
 import 'package:delivery_app/app/core/extensions/formatter.extensions.dart';
 import 'package:delivery_app/app/core/ui/styles/colors_app.dart';
 import 'package:delivery_app/app/core/ui/styles/text_styles.dart';
+import 'package:delivery_app/app/dto/order_product_dto.dart';
 import 'package:delivery_app/app/models/products_model.dart';
+import 'package:delivery_app/app/pages/home/widgets/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DeliveryProductTile extends StatelessWidget {
   final ProductsModel product;
@@ -12,11 +15,14 @@ class DeliveryProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await Navigator.of(context).pushNamed(
-          '/productDetail', arguments: {
-            'product': product,
-          }
-        );
+        final controller = context.read<HomeController>();
+        final orderProduct =
+            await Navigator.of(context).pushNamed('/productDetail', arguments: {
+          'product': product,
+        });
+        if (orderProduct != null) {
+          controller.addOrUpdateBag(orderProduct as OrderProductDto);
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

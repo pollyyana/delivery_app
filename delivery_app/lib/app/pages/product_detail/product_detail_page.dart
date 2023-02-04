@@ -3,6 +3,7 @@ import 'package:delivery_app/app/core/extensions/formatter.extensions.dart';
 import 'package:delivery_app/app/core/ui/helpers/size_extensions.dart';
 import 'package:delivery_app/app/core/ui/styles/text_styles.dart';
 import 'package:delivery_app/app/core/ui/widgets/delivery_increment_decrement_button.dart';
+import 'package:delivery_app/app/dto/order_product_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -91,7 +92,9 @@ class _ProductDetailPageState
                   child: BlocBuilder<ProductDetailController, int>(
                     builder: (context, amount) {
                       return ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop(OrderProductDto(products: widget.product, amount: amount));
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
