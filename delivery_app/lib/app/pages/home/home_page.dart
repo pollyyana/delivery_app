@@ -17,10 +17,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends BaseState<HomePage, HomeController> {
   @override
-  void onReady(){
+  void onReady() {
     controller.loadProducts();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +50,12 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
                       itemCount: state.produts.length,
                       itemBuilder: (context, index) {
                         final product = state.produts[index];
+                        final orders = state.shoppingBag
+                            .where((order) => order.product == product);
                         return DeliveryProductTile(
                           product: product,
+                          orderProduct: orders.isNotEmpty ? orders.first:null,
+                          
                         );
                       }),
                 )

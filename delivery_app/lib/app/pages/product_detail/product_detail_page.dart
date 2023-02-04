@@ -14,8 +14,9 @@ import 'product_detail_controller.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final ProductsModel product;
+  final OrderProductDto? order;
 
-  const ProductDetailPage({super.key, required this.product});
+  const ProductDetailPage({super.key, required this.product, required this.order});
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -93,7 +94,8 @@ class _ProductDetailPageState
                     builder: (context, amount) {
                       return ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pop(OrderProductDto(products: widget.product, amount: amount));
+                          Navigator.of(context).pop(OrderProductDto(
+                              product: widget.product, amount: amount));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
