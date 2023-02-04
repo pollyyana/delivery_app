@@ -1,9 +1,19 @@
-import 'package:delivery_app/app/core/ui/styles/colors_app.dart';
-import 'package:delivery_app/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
+import 'package:delivery_app/app/core/ui/styles/colors_app.dart';
+import 'package:delivery_app/app/core/ui/styles/text_styles.dart';
+
 class DeliveryIncrementDecrementButton extends StatelessWidget {
-  const DeliveryIncrementDecrementButton({super.key});
+  final int amout;
+  final VoidCallback incrementTap;
+  final VoidCallback decrementTap;
+
+  const DeliveryIncrementDecrementButton({
+    super.key,
+    required this.amout,
+    required this.incrementTap,
+    required this.decrementTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,32 +23,36 @@ class DeliveryIncrementDecrementButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(7),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceAround, 
         children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Text(
-            '-',
-            style: context.textStyles.textMedium
-                .copyWith(fontSize: 22, color: Colors.grey),
+        InkWell(
+          onTap: decrementTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              '-',
+              style: context.textStyles.textMedium
+                  .copyWith(fontSize: 22, color: Colors.grey),
+            ),
           ),
         ),
         Text(
-          '1',
+          amout.toString(),
           style: context.textStyles.textRegular
-              .copyWith(fontSize: 17, color: context.colors.secondary
-              ),
+              .copyWith(fontSize: 17, color: context.colors.secondary),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal:10.0),
-          child: Text(
-            '+',
-            style: context.textStyles.textMedium
-                .copyWith(fontSize: 22, color: context.colors.secondary),
+        InkWell(
+          onTap: incrementTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              '+',
+              style: context.textStyles.textMedium
+                  .copyWith(fontSize: 22, color: context.colors.secondary),
+            ),
           ),
         ),
-      ]
-      ),
+      ]),
     );
   }
 }

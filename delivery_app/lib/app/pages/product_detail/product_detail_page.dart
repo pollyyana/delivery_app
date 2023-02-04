@@ -1,13 +1,27 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:delivery_app/app/core/extensions/formatter.extensions.dart';
 import 'package:delivery_app/app/core/ui/helpers/size_extensions.dart';
 import 'package:delivery_app/app/core/ui/styles/text_styles.dart';
-import 'package:delivery_app/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:delivery_app/app/core/ui/widgets/delivery_increment_decrement_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({super.key});
+import '../../core/ui/base_state/base_state.dart';
+import '../../core/ui/widgets/delivery_appbar.dart';
+import '../../models/products_model.dart';
+import 'product_detail_controller.dart';
 
+class ProductDetailPage extends StatefulWidget {
+  final ProductsModel product;
+
+  const ProductDetailPage({super.key, required this.product});
+
+  @override
+  State<ProductDetailPage> createState() => _ProductDetailPageState();
+}
+
+class _ProductDetailPageState
+    extends BaseState<ProductDetailPage, ProductDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +32,11 @@ class ProductDetailPage extends StatelessWidget {
             Container(
               width: context.screenWidth,
               height: context.percentHeight(.4),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
-                        'https://assets.unileversolutions.com/recipes-v2/106684.jpg?imwidth=800'),
+                      widget.product.image,
+                    ),
                     fit: BoxFit.cover),
               ),
             ),
@@ -31,19 +46,20 @@ class ProductDetailPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                'X-Burguer',
+                widget.product.name,
                 style: context.textStyles.textExtraBold.copyWith(fontSize: 22),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            const Expanded(
+            Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: SingleChildScrollView(
                   child: Text(
-                      'Lanche acompanha, pão, hamburguer,mussarela e maionese '),
+                    widget.product.description,
+                  ),
                 ),
               ),
             ),
@@ -54,41 +70,57 @@ class ProductDetailPage extends StatelessWidget {
                   width: context.percentWith(.5),
                   height: 68,
                   padding: const EdgeInsets.all(8),
-                  child: const DeliveryIncrementDecrementButton(),
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) {
+                      return DeliveryIncrementDecrementButton(
+                        decrementTap: () {
+                          controller.decrement();
+                        },
+                        incrementTap: () {
+                          controller.increment();
+                        },
+                        amout: amount,
+                      );
+                    },
+                  ),
                 ),
                 Container(
                   width: context.percentWith(.5),
                   height: 68,
                   padding: const EdgeInsets.all(8),
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Adicionar',
-                            style: context.textStyles.textExtraBold
-                                .copyWith(fontSize: 13),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Expanded(
-                            child: AutoSizeText(
-                              r'R$ 60,95',
-                              maxFontSize: 13,
-                              minFontSize: 5,
-                              maxLines: 1,
-                            textAlign: TextAlign.center,
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) {
+                      return ElevatedButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Adicionar ',
                               style: context.textStyles.textExtraBold
-                                  
+                                  .copyWith(fontSize: 13),
                             ),
-                          ),
-                        ],
-                      )),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              child: AutoSizeText(
+                                (widget.product.price * amount).currencyPTBR,
+                                maxFontSize: 13,
+                                minFontSize: 5,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: context.textStyles.textExtraBold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
-            )
+            ),
           ],
         ));
   }

@@ -1,15 +1,14 @@
-import 'dart:ffi';
 
 import 'package:delivery_app/app/models/products_model.dart';
 
 class OrderProductDto {
-  final ProductsModel product;
+  final ProductsModel products;
   final int amout;
 
   OrderProductDto({
-    required this.product,
+    required this.products,
     required this.amout,
   });
 
-  double get totalprice => amout * product.price;
+  double get totalprice => amout * products.price;
 }
