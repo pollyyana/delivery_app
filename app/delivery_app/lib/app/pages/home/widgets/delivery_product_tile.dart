@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 class DeliveryProductTile extends StatelessWidget {
   final ProductsModel product;
   final OrderProductDto? orderProduct;
+
   const DeliveryProductTile({
     super.key,
     required this.product,
@@ -25,10 +26,10 @@ class DeliveryProductTile extends StatelessWidget {
         final orderProductResult =
             await Navigator.of(context).pushNamed('/productDetail', arguments: {
           'product': product,
-          'order': orderProduct
+          'order': orderProduct,
         });
-        if (orderProduct != null) {
-          controller.addOrUpdateBag(orderProduct as OrderProductDto);
+        if (orderProductResult != null) {
+          controller.addOrUpdateBag(orderProductResult as OrderProductDto);
         }
       },
       child: Padding(

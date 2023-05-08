@@ -16,7 +16,8 @@ class ProductDetailPage extends StatefulWidget {
   final ProductsModel product;
   final OrderProductDto? order;
 
-  const ProductDetailPage({super.key, required this.product, required this.order});
+  const ProductDetailPage(
+      {super.key, required this.product, required this.order});
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -25,6 +26,12 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState
     extends BaseState<ProductDetailPage, ProductDetailController> {
   @override
+  void initState() {
+    super.initState();
+    final amount = widget.order?.amount ?? 1;
+    controller.initial(amount, widget.order != null);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: DeliveryAppbar(),
