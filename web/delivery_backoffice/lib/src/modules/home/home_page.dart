@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/ui/Styles/colors_app.dart';
 import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
-import '../../core/ui/helpers/size_extensions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,9 +27,24 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
       ),
       body: Container(
         child: Container(
-          color: context.colors.secondary,
-          width: context.percentWidth(.5),
-          height: context.percentHeight(1),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: TextFormField(
+                  decoration: const InputDecoration(label: Text('Login')),
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('botao'),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
