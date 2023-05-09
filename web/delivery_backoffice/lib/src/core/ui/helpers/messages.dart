@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 mixin Messages<T extends StatefulWidget> on State<T> {
   void showError(String message) {
-    _showSnackbar(AwesomeSnackbarContent(
-      title: 'Erro',
-      message: message,
-      contentType: ContentType.failure,
-    ));
+    _showSnackbar(
+      AwesomeSnackbarContent(
+        title: 'Erro',
+        message: message,
+        contentType: ContentType.failure,
+      ),
+    );
   }
 
   void showWarning(String message) {
