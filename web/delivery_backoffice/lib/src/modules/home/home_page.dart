@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/env/env.dart';
+import '../../core/ui/Styles/colors_app.dart';
 import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
 import '../../core/ui/helpers/size_extensions.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
       ),
       body: Container(
         child: Container(
-          color: Colors.red,
+          color: context.colors.secondary,
           width: context.percentWidth(.5),
           height: context.percentHeight(1),
         ),
