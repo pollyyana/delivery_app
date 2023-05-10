@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../../core/ui/helpers/size_extensions.dart';
+import 'menu/menu_bar.dart' as menu;
+
 
 class BaseLayout extends StatelessWidget {
   final Widget body;
+  
 
-  const BaseLayout({super.key, required this.body});
+  const BaseLayout({ required this.body, super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +45,13 @@ class BaseLayout extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Container(
-                      width: 200,
-                      height: double.infinity,
-                      color: Colors.red,
-                    ),
+                    const menu.MenuBar(),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.only(left: 20),
                         color: Colors.grey[50]!,
-                        child: body),
+                        child: body,
+                      ),
                     ),
                   ],
                 ),
@@ -64,3 +63,4 @@ class BaseLayout extends StatelessWidget {
     );
   }
 }
+
