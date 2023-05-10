@@ -14,7 +14,7 @@ class AppStyles {
     return _instance!;
   }
 
-  ButtonStyle get primatyButton => ElevatedButton.styleFrom(
+  ButtonStyle get primaryButton => ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),

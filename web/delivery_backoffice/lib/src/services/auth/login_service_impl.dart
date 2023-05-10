@@ -17,7 +17,7 @@ class LoginServiceImpl implements LoginService {
     );
     _storage.setData(
       SessionStorageKey.accessToken.key,
-      authModel.acessToken,
+      authModel.accessToken,
     );
   }
 }

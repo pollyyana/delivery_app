@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 //classe todos os estilos do texto
-class TextStyles {
+class TextStyles {   
+
   static TextStyles? _instance;
+  
   TextStyles._();
   static TextStyles get instance {
     _instance ??= TextStyles._();

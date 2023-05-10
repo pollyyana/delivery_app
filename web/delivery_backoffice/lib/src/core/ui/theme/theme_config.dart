@@ -1,9 +1,11 @@
 //padroes para o projeto
 
-import 'package:flutter/material.dart';
+
 
 import '../Styles/app_styles.dart';
 import '../Styles/colors_app.dart';
+import 'package:flutter/material.dart';
+
 import '../Styles/text_styles.dart';
 
 class ThemeConfig {
@@ -25,7 +27,7 @@ class ThemeConfig {
       secondary: ColorsApp.instance.secondary,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: AppStyles.instance.primatyButton,
+      style: AppStyles.instance.primaryButton,
     ),
     inputDecorationTheme: InputDecorationTheme(
     fillColor: Colors.white,
