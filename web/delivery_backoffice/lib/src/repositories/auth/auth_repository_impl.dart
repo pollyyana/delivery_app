@@ -16,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
         'email': email,
         'password': password,
         'admin': true,
-      });
+      },);
 
       return AuthModel.fromMap(result.data);
     } on DioError catch (e, s) {
