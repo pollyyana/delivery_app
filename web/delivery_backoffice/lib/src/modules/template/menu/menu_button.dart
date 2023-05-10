@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/ui/Styles/text_styles.dart';
-import '../../template/menu/menu_enum.dart';
+import 'menu_enum.dart';
 
 class MenuButton extends StatelessWidget {
   final Menu menu;

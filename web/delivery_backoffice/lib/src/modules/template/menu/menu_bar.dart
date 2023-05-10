@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/ui/helpers/size_extensions.dart';
-import '../../login/menu/menu_button.dart';
+import 'menu_button.dart';
 import 'menu_enum.dart';
 
 class MenuBar extends StatefulWidget {
