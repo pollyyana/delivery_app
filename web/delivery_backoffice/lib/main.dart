@@ -4,8 +4,8 @@ import './src/app_module.dart';
 import './src/app_widget.dart';
 import 'src/core/env/env.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized;
   await Env.instance.load();
-  return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
+  return runApp(ModularApp(module: AppModule(), child: AppWidget()));
 }
