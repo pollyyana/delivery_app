@@ -29,7 +29,7 @@ class BaseHeader extends StatelessWidget {
           children: [
             Visibility(
               visible: filterWidget == null,
-              replacement: filterWidget ?? SizedBox.shrink(),
+              replacement: filterWidget ?? const SizedBox.shrink(),
               child: SizedBox(
                 width: constrains.maxWidth * .15,
                 child: TextFormField(
@@ -52,7 +52,7 @@ class BaseHeader extends StatelessWidget {
             ),
             Container(
               width: constrains.maxWidth * .65,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Text(
                 title,
                 textAlign: TextAlign.center,

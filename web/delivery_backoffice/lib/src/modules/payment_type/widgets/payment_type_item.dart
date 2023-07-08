@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/ui/Styles/text_styles.dart';
+import '../../../core/ui/Styles/text_styles.dart';
 
 class PaymentTypeItem extends StatelessWidget {
   const PaymentTypeItem({super.key});
@@ -31,7 +31,7 @@ class PaymentTypeItem extends StatelessWidget {
                   'Forma de Pagamento',
                   style: context.textStyles.textRegular,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -45,7 +45,7 @@ class PaymentTypeItem extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: Text('Editar'),
+                  child: const Text('Editar'),
                 ),
               ),
             ),
