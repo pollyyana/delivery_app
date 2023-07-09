@@ -20,7 +20,7 @@ class AppModule extends Module {
           ),
           children: [
             ModuleRoute(
-              '/payment-type',
+              '/payment-types',
               module: PaymentTypeModule(),
             ),
           ],

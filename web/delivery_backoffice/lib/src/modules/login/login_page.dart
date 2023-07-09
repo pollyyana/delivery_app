@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
           break;
         case LoginStateStatus.success:
           hideLoader();
-          Modular.to.navigate('/');
+          Modular.to.navigate('/payment-types');
           break;
         case LoginStateStatus.error:
           hideLoader();
