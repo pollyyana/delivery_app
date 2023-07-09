@@ -40,8 +40,9 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             break;
           case PaymentTypeStateStatus.error:
             hideLoader();
-            showError(controller.errorMessage ??
-                'Erro ao buscar formas de pagamentos',);
+            showError(
+              controller.errorMessage ?? 'Erro ao buscar formas de pagamentos',
+            );
             break;
         }
       });
@@ -65,7 +66,7 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             child: Observer(
               builder: (_) {
                 return GridView.builder(
-                  itemCount: controller.paymentTypes.length ,
+                  itemCount: controller.paymentTypes.length,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     mainAxisExtent: 120,
                     mainAxisSpacing: 20,
@@ -74,7 +75,9 @@ class _PaymentTypePageState extends State<PaymentTypePage>
                   ),
                   itemBuilder: (context, index) {
                     final paymentTypeModel = controller.paymentTypes[index];
-                    return const PaymentTypeItem();
+                    return PaymentTypeItem(
+                      payment: paymentTypeModel,
+                    );
                   },
                 );
               },
