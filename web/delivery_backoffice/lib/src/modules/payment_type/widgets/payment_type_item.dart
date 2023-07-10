@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import '../../../core/ui/Styles/colors_app.dart';
 import '../../../core/ui/Styles/text_styles.dart';
 import '../../../models/payment_type_model.dart';
+import '../payment_type_controller.dart';
 
 class PaymentTypeItem extends StatelessWidget {
+  final PaymentTypeController controller;
   final PaymentTypeModel payment;
 
-  const PaymentTypeItem({super.key, required this.payment});
+  const PaymentTypeItem({super.key, required this.payment, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     final colorAll = payment.enabled ? Colors.black : Colors.grey;
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
@@ -57,7 +60,9 @@ class PaymentTypeItem extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.editPayment(payment);
+                  },
                   child: Text(
                     'Editar',
                     style: context.textStyles.textMedium.copyWith(

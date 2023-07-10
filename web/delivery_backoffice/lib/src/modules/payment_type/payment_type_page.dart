@@ -44,11 +44,34 @@ class _PaymentTypePageState extends State<PaymentTypePage>
               controller.errorMessage ?? 'Erro ao buscar formas de pagamentos',
             );
             break;
+          case PaymentTypeStateStatus.addOrUpdatePayment:
+            hideLoader();
+            showAddOrUpdatePayment();
+            break;
         }
       });
       disposers.addAll([statusDisposer]);
       controller.loadPayments();
     });
+  }
+
+  void showAddOrUpdatePayment() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Material(
+          color: Colors.black26,
+          child: Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            backgroundColor: Colors.white,
+            elevation: 10,
+            child: Text('MODALX'),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -58,7 +81,9 @@ class _PaymentTypePageState extends State<PaymentTypePage>
       padding: const EdgeInsets.only(left: 40, top: 40, right: 40),
       child: Column(
         children: [
-          const PaymentTypeHeader(),
+          PaymentTypeHeader(
+            controller: controller,
+          ),
           const SizedBox(
             height: 50,
           ),
@@ -77,6 +102,7 @@ class _PaymentTypePageState extends State<PaymentTypePage>
                     final paymentTypeModel = controller.paymentTypes[index];
                     return PaymentTypeItem(
                       payment: paymentTypeModel,
+                      controller: controller,
                     );
                   },
                 );
