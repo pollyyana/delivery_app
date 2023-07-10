@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/ui/Styles/colors_app.dart';
 import '../../../core/ui/Styles/text_styles.dart';
 import '../../../models/payment_type_model.dart';
 
@@ -10,6 +11,7 @@ class PaymentTypeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorAll = payment.enabled ? Colors.black : Colors.grey;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
@@ -24,8 +26,10 @@ class PaymentTypeItem extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) {
                 return Image.asset(
                   'assets/images/icons/payment_notfound_icon.png'.toLowerCase(),
+                  color: colorAll,
                 );
               },
+              // color: colorAll,
             ),
             const SizedBox(
               width: 20,
@@ -37,13 +41,16 @@ class PaymentTypeItem extends StatelessWidget {
               children: [
                 Text(
                   'Forma de Pagamento',
-                  style: context.textStyles.textRegular,
+                  style:
+                      context.textStyles.textRegular.copyWith(color: colorAll),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 //text cartao de credito
-                Text(payment.name, style: context.textStyles.textTitle),
+                Text(payment.name,
+                    style:
+                        context.textStyles.textTitle.copyWith(color: colorAll)),
               ],
             ),
             Expanded(
@@ -51,7 +58,13 @@ class PaymentTypeItem extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text('Editar'),
+                  child: Text(
+                    'Editar',
+                    style: context.textStyles.textMedium.copyWith(
+                        color: payment.enabled
+                            ? context.colors.primary
+                            : Colors.grey),
+                  ),
                 ),
               ),
             ),
