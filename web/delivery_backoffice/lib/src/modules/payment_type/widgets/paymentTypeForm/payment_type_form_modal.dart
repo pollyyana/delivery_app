@@ -82,10 +82,17 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
                     padding: const EdgeInsets.all(8),
                     child: OutlinedButton(
                       onPressed: () {},
-                      style: OutlinedButton.styleFrom(side: const BorderSide(
-                        color: Colors.red,
-                      ),),
-                      child:  Text('Cancelar', style: context.textStyles.textExtraBold.copyWith(color: Colors.red),),
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(
+                          color: Colors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Cancelar',
+                        style: context.textStyles.textExtraBold.copyWith(
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
                   ),
                   Container(
@@ -93,7 +100,7 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
                     child: ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.save),
-                      label: const Text('Slavar'),
+                      label: const Text('Salvar'),
                     ),
                   ),
                 ],
