@@ -139,6 +139,22 @@ mixin _$PaymentTypeController on PaymentTypeControllerBase, Store {
   }
 
   @override
+  void savePayment(
+      {int? id,
+      required String name,
+      required String acronym,
+      required bool enabled}) {
+    final _$actionInfo = _$PaymentTypeControllerBaseActionController
+        .startAction(name: 'PaymentTypeControllerBase.savePayment');
+    try {
+      return super
+          .savePayment(id: id, name: name, acronym: acronym, enabled: enabled);
+    } finally {
+      _$PaymentTypeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 
