@@ -9,7 +9,8 @@ class PaymentTypeItem extends StatelessWidget {
   final PaymentTypeController controller;
   final PaymentTypeModel payment;
 
-  const PaymentTypeItem({super.key, required this.payment, required this.controller});
+  const PaymentTypeItem(
+      {super.key, required this.payment, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -37,24 +38,32 @@ class PaymentTypeItem extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Column(
+            Expanded(
+              
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Forma de Pagamento',
-                  style:
-                      context.textStyles.textRegular.copyWith(color: colorAll),
+                FittedBox(
+                  child: Text(
+                    'Forma de Pagamento',
+                    style:
+                        context.textStyles.textRegular.copyWith(color: colorAll),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 //text cartao de credito
-                Text(payment.name,
-                    style:
-                        context.textStyles.textTitle.copyWith(color: colorAll)),
+                FittedBox(
+                  child: Text(
+                    payment.name,
+                    style: context.textStyles.textTitle.copyWith(color: colorAll),
+                  ),
+                ),
               ],
+            ),
             ),
             Expanded(
               child: Align(

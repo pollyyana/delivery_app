@@ -8,6 +8,7 @@ import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
 
 import 'payment_type_controller.dart';
+import 'widgets/paymentTypeForm/payment_type_form_modal.dart';
 import 'widgets/payment_type_item.dart';
 import 'widgets/payment_type_headers.dart';
 
@@ -67,7 +68,7 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             ),
             backgroundColor: Colors.white,
             elevation: 10,
-            child: Text('MODALX'),
+            child: PaymentTypeFormModal(model: controller.paymentTypeSelected),
           ),
         );
       },
